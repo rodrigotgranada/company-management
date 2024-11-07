@@ -1,0 +1,499 @@
+{
+	"info": {
+		"_postman_id": "11beeada-eaac-483e-9f10-73f6cbdf3640",
+		"name": "Company Management API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5092384"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"testeadmin\",\n  \"email\": \"admin@example.com\",\n  \"password\": \"password123\",\n  \"role\": \"ROLE_ADMIN\"\n}\n"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzA5NDA3NjYsImV4cCI6MTczMDk0NDM2Niwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidXNlckBleGFtcGxlLmNvbSJ9.OWVHOk7LzjOVdyUqrEAwT4lWcB5UCwMePRnBVYE8UCf2XX9OLXqmtr6AiaO6uAFg1jswJqE27fJPqleqJcusTSf95h3yttwmj8pdBL6xXyISDdf5vgKMdmNST4KLa711ycnzK9V-r6oia3ZPklsd26TO_f4tq4hqEtH6QrPQ7v-pdFetq3K2aRV3ndLGe607sQRvYQIkzDE7JRmxN-XmSzmWt8FE2CC46NEZhRdToXMgQcVycmBIJCgqyEwwPxd2KWQyIAeiIojUECIHXNOe3UkApOyyo2zW39K-GaI3OJC2GAWhh4gMl3K-0xEoc6w9DQW6n2WNbkZjfNbuFH27Rp9YKGVfG3vik9gWTVf89XlKF21bJoL7h7VNKSbNN1s6q6CaMgs4HDaVHZQp6bXk0x0B6SACsU0DEOf_c2m83GavXBcNc44CaFMoNasabF4_r0S7ESOt1T3NcD_gjADx6-pJ-YIxM1o46t9wG5P2arIVKN3w5PRghJLiIkde13iYOpJBRcX7s7zMMUBZoPElsU1eYzBA1_lZV3swFgzGOXvT5YdtM6mgRGaVPY3x6wKrrot3y_DktRjldY5dAGWPbNwiEG4L7zrUfqCBtYeukq_8I3EXNF3iDJYgk7DQgjqj4wI-gQA-_lpL8xDiIcyFZ73vaPiHzEezB78k7kT85yM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista Usuarios",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzA5NDUyNDQsImV4cCI6MTczMDk0ODg0NCwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImFkbWluQGV4YW1wbGUuY29tIn0.iXwCpCAujQ9ECaLSaWEBNtnoBwDPNfpahj5zcLVwodm-cTun3ZnYWGq0nkj6rwKze2gMofkyU4zaMMBQwtT4UosBBzLGwxUYEPeNkz1y0wXhjJUdXG7t4PhYQ9-9Mkjmn49iIB06dBWdoNLmp3lVh8Ha1ivF2G5djwHDrNmKUNrBTYEjRk_18yTm5JFhPqrY2KoKOsXhVP77qkkt7ZVq2uyWIF8_i8ZD9-BCT_RZo9DVmqa_oA4J2hgLNJuXB8xeb5joCc3nV4O6pnV_XMULZFgTqlAVv0XEql38ofJs2tDMqNaI7lezIES-Rp7lHXmedUR5MUYhqpIewm44gxMYHcN7bRdT5cmA6kW9hxU7JTDjjDeJ0zEJwtc6NM3zV9UfS2u0t5Chc_45R3cXhje0WnN0pzfPXOQsPD63iGqkwzoCLUWoShMWFhdUs-dg-fyYp4idUBx72VqvKfOfprHRqvK42ztdm4GFazIdss4HEQ_ocIhT8M3kJcM8DEwK42rIO5wtZMPdJe2whfXSIfLKAYD8VAdHsypA7YPQvDwXWGmxHBgOPLknjIPO8rfV8ehUlRY0W4gJnYMNdfXxUBYFfb7DNVu7AG3nfQ2PCcGNplOg_D8yIJT_Q0O_hXBoL9R19C33qeY4IX2SP4Jz4zbiR0VOiZOT7kgvLJ3u8JJPG30",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzA5NDUyNDQsImV4cCI6MTczMDk0ODg0NCwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImFkbWluQGV4YW1wbGUuY29tIn0.iXwCpCAujQ9ECaLSaWEBNtnoBwDPNfpahj5zcLVwodm-cTun3ZnYWGq0nkj6rwKze2gMofkyU4zaMMBQwtT4UosBBzLGwxUYEPeNkz1y0wXhjJUdXG7t4PhYQ9-9Mkjmn49iIB06dBWdoNLmp3lVh8Ha1ivF2G5djwHDrNmKUNrBTYEjRk_18yTm5JFhPqrY2KoKOsXhVP77qkkt7ZVq2uyWIF8_i8ZD9-BCT_RZo9DVmqa_oA4J2hgLNJuXB8xeb5joCc3nV4O6pnV_XMULZFgTqlAVv0XEql38ofJs2tDMqNaI7lezIES-Rp7lHXmedUR5MUYhqpIewm44gxMYHcN7bRdT5cmA6kW9hxU7JTDjjDeJ0zEJwtc6NM3zV9UfS2u0t5Chc_45R3cXhje0WnN0pzfPXOQsPD63iGqkwzoCLUWoShMWFhdUs-dg-fyYp4idUBx72VqvKfOfprHRqvK42ztdm4GFazIdss4HEQ_ocIhT8M3kJcM8DEwK42rIO5wtZMPdJe2whfXSIfLKAYD8VAdHsypA7YPQvDwXWGmxHBgOPLknjIPO8rfV8ehUlRY0W4gJnYMNdfXxUBYFfb7DNVu7AG3nfQ2PCcGNplOg_D8yIJT_Q0O_hXBoL9R19C33qeY4IX2SP4Jz4zbiR0VOiZOT7kgvLJ3u8JJPG30",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/user/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Empresas",
+			"item": [
+				{
+					"name": "Criar Empresa",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzA5NDQ4MzEsImV4cCI6MTczMDk0ODQzMSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidXNlckBleGFtcGxlLmNvbSJ9.L9TzGMaxv1PJQ0KnDmdcY27Jwb6JH5m8ml-nAWaq6s879Lzu6G0FNMFxCO1ESGyk5gwPIav0MhIPxSsw-IkcVUAU2B67Y4-tiDMpiGgFoOC9xotLnv8_CVz9AzI9apBz5pUyO4345AEr2vU-aDmSQxxhpIYY78shXPDBIesgsdoO2a_eMKjtp4HsEHswHp3xD2hhioLOg77mws1NNjGQYbDwTOqGiSCRPZW2TwOMPxWiMJ4yJckQBa2AbfNBasgqzfYiu1ZA2djJ-xQv7-PfXSjH3w-5oj9Rtaq1M6XJ2rKmWg_tLojt7MnUyrihQ3pWszDwTgG8NA8jGTaqtw3xHZfFBF3lmDiPQWI0OPulKOnHjJOyjB-FMPqSadXmIKDJSeRTx5eGXnH2pOsW0nNNQJlszPoRflXph5RSwXYhYIuDLhjRZ9Rdu5DcfrFOrmbVXcq0nUXGadHYFKaUGISESvfYYNPeqHRms5fRGb3KhfM_4uvCM9CwsbP1XtYV0fCySUVHQ2Azz1PglZVn3zvkn6wdDcvHL7kZZ9mhKevUi6cL_vevZuxSIQlKBIFXmTFCTOyC4AjpQzzaQJEZ4Q8GL-AQeRD5xRVFcLG6NL9APCNErJQXENQtAvSy2ZJzRus2J1Hqam9KPytNi_vQoavmh-0NNNctWkxywcL2lGyD5x4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"Empresa Exemplo\",\n  \"cnpj\": \"12345678000100\",\n  \"endereco\": \"Rua Exemplo, 123\",\n  \"telefone\": \"11999999999\",\n  \"email\": \"empresa@example.com\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/empresas",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"empresas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Empresas",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzA5NDQ4MzEsImV4cCI6MTczMDk0ODQzMSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidXNlckBleGFtcGxlLmNvbSJ9.L9TzGMaxv1PJQ0KnDmdcY27Jwb6JH5m8ml-nAWaq6s879Lzu6G0FNMFxCO1ESGyk5gwPIav0MhIPxSsw-IkcVUAU2B67Y4-tiDMpiGgFoOC9xotLnv8_CVz9AzI9apBz5pUyO4345AEr2vU-aDmSQxxhpIYY78shXPDBIesgsdoO2a_eMKjtp4HsEHswHp3xD2hhioLOg77mws1NNjGQYbDwTOqGiSCRPZW2TwOMPxWiMJ4yJckQBa2AbfNBasgqzfYiu1ZA2djJ-xQv7-PfXSjH3w-5oj9Rtaq1M6XJ2rKmWg_tLojt7MnUyrihQ3pWszDwTgG8NA8jGTaqtw3xHZfFBF3lmDiPQWI0OPulKOnHjJOyjB-FMPqSadXmIKDJSeRTx5eGXnH2pOsW0nNNQJlszPoRflXph5RSwXYhYIuDLhjRZ9Rdu5DcfrFOrmbVXcq0nUXGadHYFKaUGISESvfYYNPeqHRms5fRGb3KhfM_4uvCM9CwsbP1XtYV0fCySUVHQ2Azz1PglZVn3zvkn6wdDcvHL7kZZ9mhKevUi6cL_vevZuxSIQlKBIFXmTFCTOyC4AjpQzzaQJEZ4Q8GL-AQeRD5xRVFcLG6NL9APCNErJQXENQtAvSy2ZJzRus2J1Hqam9KPytNi_vQoavmh-0NNNctWkxywcL2lGyD5x4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/empresas",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"empresas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Empresa",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzA5NDQ4MzEsImV4cCI6MTczMDk0ODQzMSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidXNlckBleGFtcGxlLmNvbSJ9.L9TzGMaxv1PJQ0KnDmdcY27Jwb6JH5m8ml-nAWaq6s879Lzu6G0FNMFxCO1ESGyk5gwPIav0MhIPxSsw-IkcVUAU2B67Y4-tiDMpiGgFoOC9xotLnv8_CVz9AzI9apBz5pUyO4345AEr2vU-aDmSQxxhpIYY78shXPDBIesgsdoO2a_eMKjtp4HsEHswHp3xD2hhioLOg77mws1NNjGQYbDwTOqGiSCRPZW2TwOMPxWiMJ4yJckQBa2AbfNBasgqzfYiu1ZA2djJ-xQv7-PfXSjH3w-5oj9Rtaq1M6XJ2rKmWg_tLojt7MnUyrihQ3pWszDwTgG8NA8jGTaqtw3xHZfFBF3lmDiPQWI0OPulKOnHjJOyjB-FMPqSadXmIKDJSeRTx5eGXnH2pOsW0nNNQJlszPoRflXph5RSwXYhYIuDLhjRZ9Rdu5DcfrFOrmbVXcq0nUXGadHYFKaUGISESvfYYNPeqHRms5fRGb3KhfM_4uvCM9CwsbP1XtYV0fCySUVHQ2Azz1PglZVn3zvkn6wdDcvHL7kZZ9mhKevUi6cL_vevZuxSIQlKBIFXmTFCTOyC4AjpQzzaQJEZ4Q8GL-AQeRD5xRVFcLG6NL9APCNErJQXENQtAvSy2ZJzRus2J1Hqam9KPytNi_vQoavmh-0NNNctWkxywcL2lGyD5x4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"Empresa Exemplo Atualizada\",\n  \"cnpj\": \"12345678000101\",\n  \"endereco\": \"Rua Nova, 456\",\n  \"telefone\": \"11988888888\",\n  \"email\": \"novaempresa@example.com\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/empresas/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"empresas",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Empresa",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzA5NDQ4MzEsImV4cCI6MTczMDk0ODQzMSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidXNlckBleGFtcGxlLmNvbSJ9.L9TzGMaxv1PJQ0KnDmdcY27Jwb6JH5m8ml-nAWaq6s879Lzu6G0FNMFxCO1ESGyk5gwPIav0MhIPxSsw-IkcVUAU2B67Y4-tiDMpiGgFoOC9xotLnv8_CVz9AzI9apBz5pUyO4345AEr2vU-aDmSQxxhpIYY78shXPDBIesgsdoO2a_eMKjtp4HsEHswHp3xD2hhioLOg77mws1NNjGQYbDwTOqGiSCRPZW2TwOMPxWiMJ4yJckQBa2AbfNBasgqzfYiu1ZA2djJ-xQv7-PfXSjH3w-5oj9Rtaq1M6XJ2rKmWg_tLojt7MnUyrihQ3pWszDwTgG8NA8jGTaqtw3xHZfFBF3lmDiPQWI0OPulKOnHjJOyjB-FMPqSadXmIKDJSeRTx5eGXnH2pOsW0nNNQJlszPoRflXph5RSwXYhYIuDLhjRZ9Rdu5DcfrFOrmbVXcq0nUXGadHYFKaUGISESvfYYNPeqHRms5fRGb3KhfM_4uvCM9CwsbP1XtYV0fCySUVHQ2Azz1PglZVn3zvkn6wdDcvHL7kZZ9mhKevUi6cL_vevZuxSIQlKBIFXmTFCTOyC4AjpQzzaQJEZ4Q8GL-AQeRD5xRVFcLG6NL9APCNErJQXENQtAvSy2ZJzRus2J1Hqam9KPytNi_vQoavmh-0NNNctWkxywcL2lGyD5x4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/empresas/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"empresas",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Sócios de uma Empresa",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzA5NDA3NjYsImV4cCI6MTczMDk0NDM2Niwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidXNlckBleGFtcGxlLmNvbSJ9.OWVHOk7LzjOVdyUqrEAwT4lWcB5UCwMePRnBVYE8UCf2XX9OLXqmtr6AiaO6uAFg1jswJqE27fJPqleqJcusTSf95h3yttwmj8pdBL6xXyISDdf5vgKMdmNST4KLa711ycnzK9V-r6oia3ZPklsd26TO_f4tq4hqEtH6QrPQ7v-pdFetq3K2aRV3ndLGe607sQRvYQIkzDE7JRmxN-XmSzmWt8FE2CC46NEZhRdToXMgQcVycmBIJCgqyEwwPxd2KWQyIAeiIojUECIHXNOe3UkApOyyo2zW39K-GaI3OJC2GAWhh4gMl3K-0xEoc6w9DQW6n2WNbkZjfNbuFH27Rp9YKGVfG3vik9gWTVf89XlKF21bJoL7h7VNKSbNN1s6q6CaMgs4HDaVHZQp6bXk0x0B6SACsU0DEOf_c2m83GavXBcNc44CaFMoNasabF4_r0S7ESOt1T3NcD_gjADx6-pJ-YIxM1o46t9wG5P2arIVKN3w5PRghJLiIkde13iYOpJBRcX7s7zMMUBZoPElsU1eYzBA1_lZV3swFgzGOXvT5YdtM6mgRGaVPY3x6wKrrot3y_DktRjldY5dAGWPbNwiEG4L7zrUfqCBtYeukq_8I3EXNF3iDJYgk7DQgjqj4wI-gQA-_lpL8xDiIcyFZ73vaPiHzEezB78k7kT85yM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/empresas/:id/socios",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"empresas",
+								":id",
+								"socios"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sócios",
+			"item": [
+				{
+					"name": "Criar Sócio",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzA5NDQ4MzEsImV4cCI6MTczMDk0ODQzMSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidXNlckBleGFtcGxlLmNvbSJ9.L9TzGMaxv1PJQ0KnDmdcY27Jwb6JH5m8ml-nAWaq6s879Lzu6G0FNMFxCO1ESGyk5gwPIav0MhIPxSsw-IkcVUAU2B67Y4-tiDMpiGgFoOC9xotLnv8_CVz9AzI9apBz5pUyO4345AEr2vU-aDmSQxxhpIYY78shXPDBIesgsdoO2a_eMKjtp4HsEHswHp3xD2hhioLOg77mws1NNjGQYbDwTOqGiSCRPZW2TwOMPxWiMJ4yJckQBa2AbfNBasgqzfYiu1ZA2djJ-xQv7-PfXSjH3w-5oj9Rtaq1M6XJ2rKmWg_tLojt7MnUyrihQ3pWszDwTgG8NA8jGTaqtw3xHZfFBF3lmDiPQWI0OPulKOnHjJOyjB-FMPqSadXmIKDJSeRTx5eGXnH2pOsW0nNNQJlszPoRflXph5RSwXYhYIuDLhjRZ9Rdu5DcfrFOrmbVXcq0nUXGadHYFKaUGISESvfYYNPeqHRms5fRGb3KhfM_4uvCM9CwsbP1XtYV0fCySUVHQ2Azz1PglZVn3zvkn6wdDcvHL7kZZ9mhKevUi6cL_vevZuxSIQlKBIFXmTFCTOyC4AjpQzzaQJEZ4Q8GL-AQeRD5xRVFcLG6NL9APCNErJQXENQtAvSy2ZJzRus2J1Hqam9KPytNi_vQoavmh-0NNNctWkxywcL2lGyD5x4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"Sócio Exemplo\",\n  \"cpf\": \"12345678301\",\n  \"endereco\": \"Rua Sócio, 789\",\n  \"telefone\": \"11977727777\",\n  \"empresaId\": 5\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/socios",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"socios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Sócios",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzA5NDA3NjYsImV4cCI6MTczMDk0NDM2Niwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidXNlckBleGFtcGxlLmNvbSJ9.OWVHOk7LzjOVdyUqrEAwT4lWcB5UCwMePRnBVYE8UCf2XX9OLXqmtr6AiaO6uAFg1jswJqE27fJPqleqJcusTSf95h3yttwmj8pdBL6xXyISDdf5vgKMdmNST4KLa711ycnzK9V-r6oia3ZPklsd26TO_f4tq4hqEtH6QrPQ7v-pdFetq3K2aRV3ndLGe607sQRvYQIkzDE7JRmxN-XmSzmWt8FE2CC46NEZhRdToXMgQcVycmBIJCgqyEwwPxd2KWQyIAeiIojUECIHXNOe3UkApOyyo2zW39K-GaI3OJC2GAWhh4gMl3K-0xEoc6w9DQW6n2WNbkZjfNbuFH27Rp9YKGVfG3vik9gWTVf89XlKF21bJoL7h7VNKSbNN1s6q6CaMgs4HDaVHZQp6bXk0x0B6SACsU0DEOf_c2m83GavXBcNc44CaFMoNasabF4_r0S7ESOt1T3NcD_gjADx6-pJ-YIxM1o46t9wG5P2arIVKN3w5PRghJLiIkde13iYOpJBRcX7s7zMMUBZoPElsU1eYzBA1_lZV3swFgzGOXvT5YdtM6mgRGaVPY3x6wKrrot3y_DktRjldY5dAGWPbNwiEG4L7zrUfqCBtYeukq_8I3EXNF3iDJYgk7DQgjqj4wI-gQA-_lpL8xDiIcyFZ73vaPiHzEezB78k7kT85yM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/socios",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"socios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Sócio",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzA5NDA3NjYsImV4cCI6MTczMDk0NDM2Niwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidXNlckBleGFtcGxlLmNvbSJ9.OWVHOk7LzjOVdyUqrEAwT4lWcB5UCwMePRnBVYE8UCf2XX9OLXqmtr6AiaO6uAFg1jswJqE27fJPqleqJcusTSf95h3yttwmj8pdBL6xXyISDdf5vgKMdmNST4KLa711ycnzK9V-r6oia3ZPklsd26TO_f4tq4hqEtH6QrPQ7v-pdFetq3K2aRV3ndLGe607sQRvYQIkzDE7JRmxN-XmSzmWt8FE2CC46NEZhRdToXMgQcVycmBIJCgqyEwwPxd2KWQyIAeiIojUECIHXNOe3UkApOyyo2zW39K-GaI3OJC2GAWhh4gMl3K-0xEoc6w9DQW6n2WNbkZjfNbuFH27Rp9YKGVfG3vik9gWTVf89XlKF21bJoL7h7VNKSbNN1s6q6CaMgs4HDaVHZQp6bXk0x0B6SACsU0DEOf_c2m83GavXBcNc44CaFMoNasabF4_r0S7ESOt1T3NcD_gjADx6-pJ-YIxM1o46t9wG5P2arIVKN3w5PRghJLiIkde13iYOpJBRcX7s7zMMUBZoPElsU1eYzBA1_lZV3swFgzGOXvT5YdtM6mgRGaVPY3x6wKrrot3y_DktRjldY5dAGWPbNwiEG4L7zrUfqCBtYeukq_8I3EXNF3iDJYgk7DQgjqj4wI-gQA-_lpL8xDiIcyFZ73vaPiHzEezB78k7kT85yM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"Sócio Exemplo Atualizado\",\n  \"cpf\": \"10987654321\",\n  \"endereco\": \"Rua Nova Sócio, 123\",\n  \"telefone\": \"11966666666\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/socios/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"socios",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Sócio",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzA5NDA3NjYsImV4cCI6MTczMDk0NDM2Niwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidXNlckBleGFtcGxlLmNvbSJ9.OWVHOk7LzjOVdyUqrEAwT4lWcB5UCwMePRnBVYE8UCf2XX9OLXqmtr6AiaO6uAFg1jswJqE27fJPqleqJcusTSf95h3yttwmj8pdBL6xXyISDdf5vgKMdmNST4KLa711ycnzK9V-r6oia3ZPklsd26TO_f4tq4hqEtH6QrPQ7v-pdFetq3K2aRV3ndLGe607sQRvYQIkzDE7JRmxN-XmSzmWt8FE2CC46NEZhRdToXMgQcVycmBIJCgqyEwwPxd2KWQyIAeiIojUECIHXNOe3UkApOyyo2zW39K-GaI3OJC2GAWhh4gMl3K-0xEoc6w9DQW6n2WNbkZjfNbuFH27Rp9YKGVfG3vik9gWTVf89XlKF21bJoL7h7VNKSbNN1s6q6CaMgs4HDaVHZQp6bXk0x0B6SACsU0DEOf_c2m83GavXBcNc44CaFMoNasabF4_r0S7ESOt1T3NcD_gjADx6-pJ-YIxM1o46t9wG5P2arIVKN3w5PRghJLiIkde13iYOpJBRcX7s7zMMUBZoPElsU1eYzBA1_lZV3swFgzGOXvT5YdtM6mgRGaVPY3x6wKrrot3y_DktRjldY5dAGWPbNwiEG4L7zrUfqCBtYeukq_8I3EXNF3iDJYgk7DQgjqj4wI-gQA-_lpL8xDiIcyFZ73vaPiHzEezB78k7kT85yM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/socios/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"socios",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8000"
+		}
+	]
+}
