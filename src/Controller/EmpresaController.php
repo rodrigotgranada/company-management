@@ -9,22 +9,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 #[Route('/api/empresas')]
 class EmpresaController extends AbstractController
 {
     private $entityManager;
+    private $validator;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager, ValidatorInterface $validator)
     {
         $this->entityManager = $entityManager;
+        $this->validator = $validator;
     }
 
-    // Criar uma nova empresa
+    
     #[Route('', name: 'criar_empresa', methods: ['POST'])]
     public function criarEmpresa(Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
+
 
         $empresa = new Empresa();
         $empresa->setNome($data['nome']);
@@ -33,13 +37,36 @@ class EmpresaController extends AbstractController
         $empresa->setTelefone($data['telefone'] ?? null);
         $empresa->setEmail($data['email'] ?? null);
 
+ 
+        $errors = $this->validator->validate($empresa);
+        if (count($errors) > 0) {
+            $errorMessages = [];
+            foreach ($errors as $error) {
+                $errorMessages[] = $error->getMessage();
+            }
+            return new JsonResponse(['status' => 'Erro de validação', 'errors' => $errorMessages], JsonResponse::HTTP_BAD_REQUEST);
+        }
+
+
         $this->entityManager->persist($empresa);
         $this->entityManager->flush();
 
-        return new JsonResponse(['status' => 'Empresa criada com sucesso'], JsonResponse::HTTP_CREATED);
+
+        return new JsonResponse(
+            [
+                'status' => 'Empresa criada com sucesso',
+                'id' => $empresa->getId(),
+                'nome' => $empresa->getNome(),
+                'cnpj' => $empresa->getCnpj(),
+                'endereco' => $empresa->getEndereco(),
+                'telefone' => $empresa->getTelefone(),
+                'email' => $empresa->getEmail(),
+            ],
+            JsonResponse::HTTP_CREATED
+        );
     }
 
-    // Listar todas as empresas
+
     #[Route('', name: 'listar_empresas', methods: ['GET'])]
     public function listarEmpresas(): JsonResponse
     {
@@ -60,11 +87,11 @@ class EmpresaController extends AbstractController
         return new JsonResponse($data, JsonResponse::HTTP_OK);
     }
 
-    // Atualizar uma empresa existente
-    #[Route('/{id}', name: 'atualizar_empresa', methods: ['PUT'])]
-    public function atualizarEmpresa(string $id, Request $request): JsonResponse
+
+    #[Route('/{id}', name: 'obter_empresa', methods: ['GET'])]
+    public function obterEmpresa(string $id): JsonResponse
     {
-        $id = (int) $id; // Converte o valor para inteiro
+        $id = (int) $id;
 
         $empresa = $this->entityManager->getRepository(Empresa::class)->find($id);
 
@@ -72,24 +99,57 @@ class EmpresaController extends AbstractController
             return new JsonResponse(['status' => 'Empresa não encontrada'], JsonResponse::HTTP_NOT_FOUND);
         }
 
-        $data = json_decode($request->getContent(), true);
-        
-        $empresa->setNome($data['nome'] ?? $empresa->getNome());
-        $empresa->setCnpj($data['cnpj'] ?? $empresa->getCnpj());
-        $empresa->setEndereco($data['endereco'] ?? $empresa->getEndereco());
-        $empresa->setTelefone($data['telefone'] ?? $empresa->getTelefone());
-        $empresa->setEmail($data['email'] ?? $empresa->getEmail());
+        $data = [
+            'id' => $empresa->getId(),
+            'nome' => $empresa->getNome(),
+            'cnpj' => $empresa->getCnpj(),
+            'endereco' => $empresa->getEndereco(),
+            'telefone' => $empresa->getTelefone(),
+            'email' => $empresa->getEmail(),
+        ];
 
-        $this->entityManager->flush();
-
-        return new JsonResponse(['status' => 'Empresa atualizada com sucesso'], JsonResponse::HTTP_OK);
+        return new JsonResponse($data, JsonResponse::HTTP_OK);
     }
 
-    // Excluir uma empresa
+ 
+   #[Route('/{id}', name: 'atualizar_empresa', methods: ['PUT'])]
+   public function atualizarEmpresa(string $id, Request $request): JsonResponse
+   {
+       $id = (int) $id;
+
+       $empresa = $this->entityManager->getRepository(Empresa::class)->find($id);
+       if (!$empresa) {
+           return new JsonResponse(['status' => 'Empresa não encontrada'], JsonResponse::HTTP_NOT_FOUND);
+       }
+
+       $data = json_decode($request->getContent(), true);
+       $empresa->setNome($data['nome'] ?? $empresa->getNome());
+       $empresa->setCnpj($data['cnpj'] ?? $empresa->getCnpj());
+       $empresa->setEndereco($data['endereco'] ?? $empresa->getEndereco());
+       $empresa->setTelefone($data['telefone'] ?? $empresa->getTelefone());
+       $empresa->setEmail($data['email'] ?? $empresa->getEmail());
+
+   
+       $errors = $this->validator->validate($empresa);
+       if (count($errors) > 0) {
+           $errorMessages = [];
+           foreach ($errors as $error) {
+               $errorMessages[] = $error->getMessage();
+           }
+           return new JsonResponse(['status' => 'Erro de validação', 'errors' => $errorMessages], JsonResponse::HTTP_BAD_REQUEST);
+       }
+
+    
+       $this->entityManager->flush();
+
+       return new JsonResponse(['status' => 'Empresa atualizada com sucesso'], JsonResponse::HTTP_OK);
+   }
+
+
     #[Route('/{id}', name: 'excluir_empresa', methods: ['DELETE'])]
     public function excluirEmpresa(string $id): JsonResponse
     {
-        $id = (int) $id; // Converte o valor para inteiro
+        $id = (int) $id;
 
         $empresa = $this->entityManager->getRepository(Empresa::class)->find($id);
 
@@ -97,7 +157,7 @@ class EmpresaController extends AbstractController
             return new JsonResponse(['status' => 'Empresa não encontrada'], JsonResponse::HTTP_NOT_FOUND);
         }
 
-        // Verificar se há sócios associados à empresa
+   
         $socios = $this->entityManager->getRepository(Socio::class)->findBy(['empresa' => $empresa]);
         if (count($socios) > 0) {
             return new JsonResponse(['status' => 'Empresa não pode ser excluída. Existem sócios associados.'], JsonResponse::HTTP_BAD_REQUEST);
@@ -109,11 +169,11 @@ class EmpresaController extends AbstractController
         return new JsonResponse(['status' => 'Empresa excluída com sucesso'], JsonResponse::HTTP_OK);
     }
 
-    // Listar todos os sócios de uma empresa
+
     #[Route('/{id}/socios', name: 'listar_socios_empresa', methods: ['GET'])]
     public function listarSociosDaEmpresa(string $id): JsonResponse
     {
-        $id = (int) $id; // Converte o valor para inteiro
+        $id = (int) $id;
 
         $empresa = $this->entityManager->getRepository(Empresa::class)->find($id);
 

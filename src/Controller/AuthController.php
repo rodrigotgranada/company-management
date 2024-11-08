@@ -31,7 +31,7 @@ class AuthController extends AbstractController
         $password = $data['password'];
         $role = $data['role'] ?? 'ROLE_USER';
 
-        // Verificar se o usuário já existe
+       
         $userExists = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
         if ($userExists) {
             return new JsonResponse(['message' => 'Usuário já registrado'], JsonResponse::HTTP_CONFLICT);

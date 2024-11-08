@@ -41,7 +41,6 @@ class Socio
     public function setNome(string $nome): static
     {
         $this->nome = $nome;
-
         return $this;
     }
 
@@ -53,7 +52,6 @@ class Socio
     public function setCpf(string $cpf): static
     {
         $this->cpf = $cpf;
-
         return $this;
     }
 
@@ -65,7 +63,6 @@ class Socio
     public function setEndereco(string $endereco): static
     {
         $this->endereco = $endereco;
-
         return $this;
     }
 
@@ -77,7 +74,6 @@ class Socio
     public function setTelefone(string $telefone): static
     {
         $this->telefone = $telefone;
-
         return $this;
     }
 
@@ -89,7 +85,6 @@ class Socio
     public function setEmpresa(?Empresa $empresa): static
     {
         $this->empresa = $empresa;
-
         return $this;
     }
 }

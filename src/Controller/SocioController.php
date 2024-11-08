@@ -20,7 +20,7 @@ class SocioController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    // Criar um novo sócio
+
     #[Route('', name: 'criar_socio', methods: ['POST'])]
     public function criarSocio(Request $request): JsonResponse
     {
@@ -48,7 +48,7 @@ class SocioController extends AbstractController
         return new JsonResponse(['status' => 'Sócio criado com sucesso'], JsonResponse::HTTP_CREATED);
     }
 
-    // Listar todos os sócios
+
     #[Route('', name: 'listar_socios', methods: ['GET'])]
     public function listarSocios(): JsonResponse
     {
@@ -72,7 +72,7 @@ class SocioController extends AbstractController
         return new JsonResponse($data, JsonResponse::HTTP_OK);
     }
 
-    // Atualizar um sócio existente
+
     #[Route('/{id}', name: 'atualizar_socio', methods: ['PUT'])]
     public function atualizarSocio(string $id, Request $request): JsonResponse
     {
@@ -110,7 +110,7 @@ class SocioController extends AbstractController
         return new JsonResponse(['status' => 'Sócio atualizado com sucesso'], JsonResponse::HTTP_OK);
     }
 
-    // Excluir um sócio
+ 
     #[Route('/{id}', name: 'excluir_socio', methods: ['DELETE'])]
     public function excluirSocio(string $id): JsonResponse
     {

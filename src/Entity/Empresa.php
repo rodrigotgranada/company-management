@@ -6,6 +6,7 @@ use App\Repository\EmpresaRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EmpresaRepository::class)]
 class Empresa
@@ -16,18 +17,29 @@ class Empresa
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Nome da empresa é obrigatório.")]
     private ?string $nome = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "CNPJ da empresa é obrigatório.")]
+    // #[Assert\Length(
+    //     min: 14,
+    //     max: 14,
+    //     exactMessage: "CNPJ deve ter exatamente 14 caracteres."
+    // )]
     private ?string $cnpj = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Endereço da empresa é obrigatório.")]
     private ?string $endereco = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Telefone da empresa é obrigatório.")]
     private ?string $telefone = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Email da empresa é obrigatório.")]
+    // #[Assert\Email(message: "O e-mail '{{ value }}' não é válido.")]
     private ?string $email = null;
 
     /**
@@ -127,7 +139,6 @@ class Empresa
     public function removeSocio(Socio $socio): static
     {
         if ($this->socios->removeElement($socio)) {
-            // set the owning side to null (unless already changed)
             if ($socio->getEmpresa() === $this) {
                 $socio->setEmpresa(null);
             }

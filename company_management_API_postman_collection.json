@@ -203,7 +203,35 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzA5NDQ4MzEsImV4cCI6MTczMDk0ODQzMSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidXNlckBleGFtcGxlLmNvbSJ9.L9TzGMaxv1PJQ0KnDmdcY27Jwb6JH5m8ml-nAWaq6s879Lzu6G0FNMFxCO1ESGyk5gwPIav0MhIPxSsw-IkcVUAU2B67Y4-tiDMpiGgFoOC9xotLnv8_CVz9AzI9apBz5pUyO4345AEr2vU-aDmSQxxhpIYY78shXPDBIesgsdoO2a_eMKjtp4HsEHswHp3xD2hhioLOg77mws1NNjGQYbDwTOqGiSCRPZW2TwOMPxWiMJ4yJckQBa2AbfNBasgqzfYiu1ZA2djJ-xQv7-PfXSjH3w-5oj9Rtaq1M6XJ2rKmWg_tLojt7MnUyrihQ3pWszDwTgG8NA8jGTaqtw3xHZfFBF3lmDiPQWI0OPulKOnHjJOyjB-FMPqSadXmIKDJSeRTx5eGXnH2pOsW0nNNQJlszPoRflXph5RSwXYhYIuDLhjRZ9Rdu5DcfrFOrmbVXcq0nUXGadHYFKaUGISESvfYYNPeqHRms5fRGb3KhfM_4uvCM9CwsbP1XtYV0fCySUVHQ2Azz1PglZVn3zvkn6wdDcvHL7kZZ9mhKevUi6cL_vevZuxSIQlKBIFXmTFCTOyC4AjpQzzaQJEZ4Q8GL-AQeRD5xRVFcLG6NL9APCNErJQXENQtAvSy2ZJzRus2J1Hqam9KPytNi_vQoavmh-0NNNctWkxywcL2lGyD5x4",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzA5NDk3MzMsImV4cCI6MTczMDk1MzMzMywicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImFkbWluQGV4YW1wbGUuY29tIn0.WTYycBigjq4Y71U8AzKeFxznYqLb-GIYV9cWhnuA1s0mqRFGjFTu6FBpqSSxwskdsIx-PPQwGQimlyA3GF0ErzWgLXvnX5UWZIXs3HjDQD5x8kx_-Zlod3uR24XqkU7ggYQTrcUf2RkqVCNZ3KcMlOdqPmSJhlzr1pWGZl-ipl5p7w7xvL-BgowsIkmdJMhd073KtHrY8neukDgm1yIgHnQOw7W68CNqWaW-A9XSuM6wMmFIpHg6qe9XT75Id0HMtreoZOpUlkwpFF6Ig7iFnC33QuS5RwVjr8o8VLpMZCBXoGlZl_S9dMJ-oK1SBLHifFSigdFDMmxClr2sUDHyqf6f4TXP1KU8uafGNP6pazG2LaRPhgpcFBX59dZ5yS-hO9uXfUGduewB3dxf-jaHXjoK3uwEl0V_xDp3Mem9rh_9g7QY1n5LLjv7_3ka743zg2MRAwzukwErkE7-f3CFoRvHcFYBwvOB0CA2bNgZClxGF12aW6Fiu4AI7JBibwx21LdemYEfELq808X1cYS2ufCzmIrWXpdaVdoTE2kNuuJj0fpVXEMtWnGyRFm4p6o_pLc8HbcGbaLAd5PXigiDn4XgA0KsoguqlpIsqs1Yv06Q48aV3SnxP_4HqLTZMIqRP-XmpeE8-OKftIIKl_ChLuKCcBgp-k9_qUyL9z6w7w4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/empresas",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"empresas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Empresa ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzA5NDk3MzMsImV4cCI6MTczMDk1MzMzMywicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImFkbWluQGV4YW1wbGUuY29tIn0.WTYycBigjq4Y71U8AzKeFxznYqLb-GIYV9cWhnuA1s0mqRFGjFTu6FBpqSSxwskdsIx-PPQwGQimlyA3GF0ErzWgLXvnX5UWZIXs3HjDQD5x8kx_-Zlod3uR24XqkU7ggYQTrcUf2RkqVCNZ3KcMlOdqPmSJhlzr1pWGZl-ipl5p7w7xvL-BgowsIkmdJMhd073KtHrY8neukDgm1yIgHnQOw7W68CNqWaW-A9XSuM6wMmFIpHg6qe9XT75Id0HMtreoZOpUlkwpFF6Ig7iFnC33QuS5RwVjr8o8VLpMZCBXoGlZl_S9dMJ-oK1SBLHifFSigdFDMmxClr2sUDHyqf6f4TXP1KU8uafGNP6pazG2LaRPhgpcFBX59dZ5yS-hO9uXfUGduewB3dxf-jaHXjoK3uwEl0V_xDp3Mem9rh_9g7QY1n5LLjv7_3ka743zg2MRAwzukwErkE7-f3CFoRvHcFYBwvOB0CA2bNgZClxGF12aW6Fiu4AI7JBibwx21LdemYEfELq808X1cYS2ufCzmIrWXpdaVdoTE2kNuuJj0fpVXEMtWnGyRFm4p6o_pLc8HbcGbaLAd5PXigiDn4XgA0KsoguqlpIsqs1Yv06Q48aV3SnxP_4HqLTZMIqRP-XmpeE8-OKftIIKl_ChLuKCcBgp-k9_qUyL9z6w7w4",
 									"type": "string"
 								}
 							]
